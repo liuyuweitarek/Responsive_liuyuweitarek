@@ -1,20 +1,46 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import 'package:portfolio/theme.dart';
+import 'package:portfolio/home/components/appbar.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  static const String route = '/';
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late ScrollController _scrollController;
+  double _scrollPosition = 0;
+  double _opacity = 0;
+  Map<String, GlobalKey> anchorSectionPoints = {};
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+    });
+  }
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size _size = MediaQuery.of(context).size;
+
+    _opacity = _scrollPosition < _size.height * 0.20
+        ? _scrollPosition / (_size.height * 0.20)
+        : 1;
+
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-    ));
+            backgroundColor: Theme.of(context).backgroundColor,
+            appBar: PreferredSize(
+                preferredSize: Size(_size.width, 1000),
+                child: HomeAppBar(_opacity, anchorSectionPoints))));
   }
 }
