@@ -18,6 +18,6 @@ class PortfolioApp extends StatelessWidget {
             title: 'Tarek Liu',
             theme: darkThemeData,
             themeMode: ThemeMode.system,
-            home: const HomePage()));
+            home: HomePage()));
   }
 }
