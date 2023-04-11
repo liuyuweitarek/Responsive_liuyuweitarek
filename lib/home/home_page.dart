@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:portfolio/home/components/appbar_slogan.dart';
 import 'package:portfolio/theme.dart';
 import 'package:portfolio/home/components/appbar.dart';
 
@@ -40,7 +41,14 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,
             appBar: PreferredSize(
-                preferredSize: Size(_size.width, 1000),
-                child: HomeAppBar(_opacity, anchorSectionPoints))));
+                preferredSize: const Size.fromHeight(80.0),
+                child: Container(
+                  color:
+                      Theme.of(context).bottomAppBarColor.withOpacity(_opacity),
+                  child: Builder(builder: (context) {
+                    return AppBarSlogon(context);
+                  }),
+                )),
+            body: Container()));
   }
 }
