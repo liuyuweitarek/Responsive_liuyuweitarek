@@ -43,12 +43,10 @@ class _HomePageState extends State<HomePage> {
             appBar: PreferredSize(
                 preferredSize: const Size.fromHeight(80.0),
                 child: Container(
-                  color:
-                      Theme.of(context).bottomAppBarColor.withOpacity(_opacity),
-                  child: Builder(builder: (context) {
-                    return AppBarSlogon(context);
-                  }),
-                )),
+                    color: Theme.of(context)
+                        .bottomAppBarColor
+                        .withOpacity(_opacity),
+                    child: AppBarSlogan())),
             body: Container()));
   }
 }
